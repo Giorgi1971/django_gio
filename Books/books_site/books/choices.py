@@ -21,3 +21,17 @@ class GenreChoices(IntegerChoices):
     Drama = 5
     Biography = 6
     Mystery = 7
+
+
+class CondChoices(IntegerChoices):
+    New = 1
+    Best = 2
+    Good = 3
+    Old = 4
+
+
+class StatusChoices(IntegerChoices):
+    Sale = 1
+    Change = 2
+    NotSale = 3
+    Hidden = 4

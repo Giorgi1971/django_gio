@@ -1,8 +1,6 @@
-from django.db import models
-
 # Create your models here.
 from django.db import models
-from books.choices import GenreChoices
+from books.choices import GenreChoices, CondChoices, StatusChoices
 
 
 class BookModel(models.Model):
@@ -12,8 +10,8 @@ class BookModel(models.Model):
     quantity = models.PositiveSmallIntegerField(verbose_name="Stock", default=1)
     author = models.ForeignKey(to='store.AuthorModel', on_delete=models.PROTECT)
     genre = models.PositiveSmallIntegerField("Gender", choices=GenreChoices.choices, default=GenreChoices.Other)
-    condition = models.PositiveSmallIntegerField("Gender", choices=GenreChoices.choices, default=GenreChoices.Other)
-    models.PositiveSmallIntegerField("Gender", choices=GenreChoices.choices, default=GenreChoices.Other)
+    condition = models.PositiveSmallIntegerField("Gender", choices=CondChoices.choices, default=CondChoices.Other)
+    status = models.PositiveSmallIntegerField("Gender", choices=StatusChoices.choices, default=StatusChoices.Other)
 
     class Meta:
         # unique_together = ('name', 'author')
@@ -21,7 +19,7 @@ class BookModel(models.Model):
         verbose_name_plural = 'Books'
 
     def __str__(self):
-        return self.name
+        return self.title
 
     def get_quantity(self):
         return f'რაოდენობაშია: {self.quantity}'
@@ -30,7 +28,6 @@ class BookModel(models.Model):
 class AuthorModel(models.Model):
     full_name = models.CharField("Full Name", max_length=255)
     age = models.PositiveSmallIntegerField("Age")
-    gender = models.PositiveSmallIntegerField("Gender", choices=GenderChoices.choices, default=GenderChoices.Other)
 
     class Meta:
         verbose_name = 'Author'
