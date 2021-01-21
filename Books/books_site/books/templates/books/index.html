@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>INdex</title>
+</head>
+<body>
+
+{% if lowest_book_list %}
+    <ul>
+    {% for question in lowest_book_list %}
+        <li><a href="/books/{{ question.id }}/">{{ question.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}s
+    <p>No book are available.</p>
+{% endif %}
+
+
+</body>
+</html>
