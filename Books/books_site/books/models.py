@@ -17,6 +17,9 @@ class AuthorModel(models.Model):
     def get_info(self):
         return f'Age: {self.age}'
 
+    def get_books(self, dd):
+        return BookModel.objects.filter(pk=dd)
+
 
 class BookModel(models.Model):
     title = models.CharField(max_length=100, verbose_name="Book Name")

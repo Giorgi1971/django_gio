@@ -1,8 +1,8 @@
 # Create your views here.
 from django.http import HttpResponse
 from django.http import Http404
-from .models import BookModel
-from django.shortcuts import render
+from .models import BookModel, AuthorModel
+from django.shortcuts import render, get_object_or_404
 
 
 def index(request):
@@ -14,16 +14,13 @@ def index(request):
 
 
 def book_id(request, book_pk):
-    try:
-        book = BookModel.objects.get(pk=book_pk)
-    except BookModel.DoesNotExist:
-        raise Http404("Books does not exist!")
+    book = get_object_or_404(BookModel, pk=book_pk)
     return render(request, 'books/book_id.html', {'book': book})
 
 
 def author_id(request, auth_id):
-    response = "You're looking at the results of author %s."
-    return HttpResponse(response % auth_id)
+    author = get_object_or_404(AuthorModel, pk=auth_id)
+    return render(request, 'books/author_id.html', {'author': author})
 
 
 def find_author(request, first_letters):
